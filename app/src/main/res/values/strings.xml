@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Trab Final</string>
+    <string name="agendamentos_disponiveis">_ agendamentos disponíveis</string>
+    <string name="agendar_quadras">Agendar Quadra</string>
+    <string name="meus_agendamentos">Meus Agendamentos</string>
+    <string name="check_in">Check in</string>
+    <string name="mapa_de_quadras">Mapa de Quadras</string>
+    <string name="deslogar">Deslogar</string>
+    <string name="select_court_type">Selecione o tipo de quadra</string>
+    <string name="spinner_court_types">Selecione o tipo de quadra</string>
+    <string-array name="court_types">
+        <item>Basquete</item>
+        <item>Beach Tennis</item>
+        <item>Futebol 7</item>
+        <item>Futebol de areia</item>
+        <item>Futebol infantil</item>
+        <item>Poliesportiva</item>
+        <item>Tênis</item>
+        <item>Vôlei de praia e Futevôlei</item>
+    </string-array>
+</resources>
