@@ -6,8 +6,9 @@
     <string name="check_in">Check in</string>
     <string name="mapa_de_quadras">Mapa de Quadras</string>
     <string name="deslogar">Deslogar</string>
-    <string name="select_court_type">Selecione o tipo de quadra</string>
     <string name="spinner_court_types">Selecione o tipo de quadra</string>
+    <string name="spinner_court_numbers">Selecione a quadra</string>
+    <string name="confirmar">Confirmar</string>
     <string-array name="court_types">
         <item>Basquete</item>
         <item>Beach Tennis</item>
@@ -18,4 +19,28 @@
         <item>Tênis</item>
         <item>Vôlei de praia e Futevôlei</item>
     </string-array>
+    <string-array name="court_numbers">
+        <item>Quadra 11</item>
+        <item>Quadra 12</item>
+        <item>Quadra 13</item>
+        <item>Quadra 14</item>
+        <item>Quadra 15</item>
+        <item>Quadra 16</item>
+        <item>Quadra 17</item>
+        <item>Quadra 18</item>
+    </string-array>
+    <string name="time_8h">8:00</string>
+    <string name="time_9h">9:00</string>
+    <string name="time_10h">10:00</string>
+    <string name="time_11h">11:00</string>
+    <string name="time_12h">12:00</string>
+    <string name="time_13h">13:00</string>
+    <string name="time_14h">14:00</string>
+    <string name="time_15h">15:00</string>
+    <string name="time_16h">16:00</string>
+    <string name="time_17h">17:00</string>
+    <string name="time_18h">18:00</string>
+    <string name="time_19h">19:00</string>
+    <string name="time_20h">20:00</string>
+
 </resources>

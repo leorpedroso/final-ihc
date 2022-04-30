@@ -30,6 +30,7 @@ public class CalendarActivity extends AppCompatActivity {
         currentDate = System.currentTimeMillis();
         calendar.setMinDate(currentDate);
         calendar.setMaxDate(currentDate + MAXDAYS_MS);
+        selectedDate = currentDate;
 
         calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             //show the selected date as a toast

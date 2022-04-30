@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TrabFinal">
         <activity
+            android:name=".SelectCourtNumberActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ConfirmActivity"
+            android:exported="false" />
+        <activity
             android:name=".SelectTimeActivity"
             android:exported="false" />
         <activity

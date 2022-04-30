@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Locale locale = new Locale("pt");
+        Locale locale = new Locale("pt", "BR");
         Locale.setDefault(locale);
         Configuration config = new Configuration();
         config.locale = locale;
