@@ -15,10 +15,14 @@ public class SelectCourtTypeActivity extends AppCompatActivity {
     private ImageView backwards;
     private ImageView forwards;
 
+    private String selectedCourtType;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_court_type);
+
+        selectedCourtType = getIntent().getStringExtra("court_type");
 
         backwards = (ImageView) findViewById(R.id.backwards);
         backwards.setOnClickListener(new View.OnClickListener() {
@@ -45,6 +49,11 @@ public class SelectCourtTypeActivity extends AppCompatActivity {
                 R.layout.contact_spinner_row_nothing_selected,
                 // R.layout.contact_spinner_nothing_selected_dropdown, // Optional
                 this));
+
+        if (selectedCourtType != null && !selectedCourtType.isEmpty()) {
+            spinnerCourtTypes.setSelection(adapter.getPosition(selectedCourtType)+1);
+        }
+
     }
 
     private void send_back(View view) {
@@ -53,6 +62,7 @@ public class SelectCourtTypeActivity extends AppCompatActivity {
     }
    private void send_forward(View view) {
         Intent i = new Intent(this, CalendarActivity.class);
+        i.putExtra("court_type", (String) spinnerCourtTypes.getSelectedItem());
         startActivity(i);
     }
 

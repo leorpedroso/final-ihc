@@ -9,16 +9,15 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 public class SelectTimeActivity extends AppCompatActivity{
 
     private TextView showdate;
     private ImageView backwards;
     private ImageView forwards;
-    private int colored_button = 0;
 
+    private int colored_button = 0;
+    private long selectedDate;
+    private String selectedCourtType;
 
     private Button buttons[] = new Button[13];
 
@@ -46,18 +45,14 @@ public class SelectTimeActivity extends AppCompatActivity{
                 //if esta descolorido, nao seta o onclick
                 @Override
                 public void onClick(View view) {
-                    if (colored_button != 0) {
-                        ((Button) findViewById(colored_button)).setBackgroundColor(getResources().getColor(R.color.gray));
-                        ((Button) findViewById(colored_button)).setTextColor(getResources().getColor(R.color.black));
-                    }
-                    button.setBackgroundColor(getResources().getColor(R.color.teal_200));
-                    button.setTextColor(getResources().getColor(R.color.white));
+                    if (colored_button != 0)
+                        setButtonDefaultColors(findViewById(colored_button));
 
+                    setButtonClickedColors(button);
                     colored_button = button.getId();
                 }
             });
         }
-
 
         backwards = (ImageView) findViewById(R.id.backwards);
         backwards.setOnClickListener(new View.OnClickListener() {
@@ -71,22 +66,42 @@ public class SelectTimeActivity extends AppCompatActivity{
             public void onClick(View view) { send_forward(view); }
         });
 
+        // Get Intents
+        selectedDate = getIntent().getLongExtra("date",0);
+        selectedCourtType = getIntent().getStringExtra("court_type");
+        colored_button = getIntent().getIntExtra("time_id",0);
+
+        if (colored_button != 0)
+            setButtonClickedColors(findViewById(colored_button));
+
         showdate = findViewById(R.id.selected_date);
-
-        long date = getIntent().getLongExtra("date",0);
-        Date selectedDate = new Date(date);
-        SimpleDateFormat df = new SimpleDateFormat("dd 'de' MMMM 'de' yyyy", new java.util.Locale("pt","BR"));
-
-        showdate.setText(df.format(selectedDate));
+        showdate.setText(Utils.formatDate(selectedDate));
+//        showdate.setText(selectedCourtType + ' ' + formattedDate);
     }
 
     private void send_back(View view) {
         Intent i = new Intent(this, CalendarActivity.class);
-        startActivity(i);
-    }
-    private void send_forward(View view) {
-        Intent i = new Intent(this, SelectCourtNumberActivity.class);
+        i.putExtra("date", selectedDate);
+        i.putExtra("court_type", selectedCourtType);
         startActivity(i);
     }
 
+    private void send_forward(View view) {
+        Intent i = new Intent(this, SelectCourtNumberActivity.class);
+        i.putExtra("date", selectedDate);
+        i.putExtra("court_type", selectedCourtType);
+        i.putExtra("time_id", colored_button);
+        i.putExtra("time", ((Button) findViewById(colored_button)).getText() );
+        startActivity(i);
+    }
+
+    private void setButtonDefaultColors(Button button) {
+        button.setBackgroundColor(getResources().getColor(R.color.gray));
+        button.setTextColor(getResources().getColor(R.color.black));
+    }
+
+    private void setButtonClickedColors(Button button) {
+        button.setBackgroundColor(getResources().getColor(R.color.teal_200));
+        button.setTextColor(getResources().getColor(R.color.white));
+    }
 }

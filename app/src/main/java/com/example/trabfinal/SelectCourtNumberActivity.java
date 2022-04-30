@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
@@ -14,6 +13,12 @@ public class SelectCourtNumberActivity extends AppCompatActivity {
     private Spinner spinnerCourtNumbers;
     private ImageView backwards;
     private ImageView forwards;
+
+    private String selectedCourtType;
+    private String selectedCourtNumber;
+    private String selectedTime;
+    private int selectedTimeId;
+    private long selectedDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,17 +46,37 @@ public class SelectCourtNumberActivity extends AppCompatActivity {
         spinnerCourtNumbers.setAdapter(
                 new NothingSelectedSpinnerAdapter(
                         adapter,
-                        R.layout.contact_spinner_row_nothing_selected,
+                        R.layout.contact_spinner_row_nothing_selected_2,
                         // R.layout.contact_spinner_nothing_selected_dropdown, // Optional
                         this));
+
+        selectedCourtNumber = getIntent().getStringExtra("court_number");
+        selectedCourtType = getIntent().getStringExtra("court_type");
+        selectedDate = getIntent().getLongExtra("date", 0);
+        selectedTime = getIntent().getStringExtra("time");
+        selectedTimeId = getIntent().getIntExtra("time_id", 0);
+
+        if (selectedCourtNumber != null && !selectedCourtNumber.isEmpty()) {
+            spinnerCourtNumbers.setSelection(adapter.getPosition(selectedCourtNumber)+1);
+        }
     }
 
     private void send_back(View view) {
         Intent i = new Intent(this, SelectTimeActivity.class);
+        i.putExtra("date", selectedDate);
+        i.putExtra("court_type", selectedCourtType);
+        i.putExtra("time_id", selectedTimeId);
+        i.putExtra("time", selectedTime);
         startActivity(i);
     }
+
     private void send_forward(View view) {
         Intent i = new Intent(this, ConfirmActivity.class);
+        i.putExtra("date", selectedDate);
+        i.putExtra("court_type", selectedCourtType);
+        i.putExtra("time", selectedTime);
+        i.putExtra("time_id", selectedTimeId);
+        i.putExtra("court_number", (String) spinnerCourtNumbers.getSelectedItem());
         startActivity(i);
     }
 

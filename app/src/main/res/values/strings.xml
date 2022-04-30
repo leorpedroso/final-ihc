@@ -9,6 +9,16 @@
     <string name="spinner_court_types">Selecione o tipo de quadra</string>
     <string name="spinner_court_numbers">Selecione a quadra</string>
     <string name="confirmar">Confirmar</string>
+    <string name="cpf">CPF</string>
+    <string name="email">Email</string>
+    <string name="senha">Senha</string>
+    <string name="confirme_senha">Confirme sua senha</string>
+    <string name="criar_conta">Crie sua conta</string>
+    <string name="ja_conta">Já possui conta? Login</string>
+    <string name="login">Log in</string>
+    <string name="emailcpf">Email ou CPF</string>
+    <string name="registre_se">Registre-se</string>
+
     <string-array name="court_types">
         <item>Basquete</item>
         <item>Beach Tennis</item>
@@ -42,5 +52,14 @@
     <string name="time_18h">18:00</string>
     <string name="time_19h">19:00</string>
     <string name="time_20h">20:00</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
 
 </resources>
