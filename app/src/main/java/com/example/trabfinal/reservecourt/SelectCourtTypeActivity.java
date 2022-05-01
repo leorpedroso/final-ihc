@@ -16,17 +16,13 @@ import com.example.trabfinal.R;
 
 public class SelectCourtTypeActivity extends AppCompatActivity {
     private Spinner spinnerCourtTypes;
-    private ImageView backwards;
-    private ImageView forwards;
-
-    private String selectedCourtType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_court_type);
 
-        selectedCourtType = getIntent().getStringExtra("court_type");
+        String selectedCourtType = getIntent().getStringExtra("court_type");
 
         spinnerCourtTypes = (Spinner) findViewById(R.id.spinnerCourtTypes);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -43,19 +39,13 @@ public class SelectCourtTypeActivity extends AppCompatActivity {
         if (selectedCourtType != null && !selectedCourtType.isEmpty())
             spinnerCourtTypes.setSelection(adapter.getPosition(selectedCourtType)+1);
 
-        backwards = (ImageView) findViewById(R.id.backwards);
-        backwards.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) { send_back(view); }
-        });
+        ImageView backwards = (ImageView) findViewById(R.id.backwards);
+        backwards.setOnClickListener(this::send_back);
 
-        forwards = (ImageView) findViewById(R.id.forwards);
-        forwards.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (isSendableSpinner(spinnerCourtTypes))
-                    send_forward(view);
-            }
+        ImageView forwards = (ImageView) findViewById(R.id.forwards);
+        forwards.setOnClickListener(view -> {
+            if (isSendableSpinner(spinnerCourtTypes))
+                send_forward();
         });
     }
 
@@ -64,7 +54,7 @@ public class SelectCourtTypeActivity extends AppCompatActivity {
         startActivity(i);
     }
 
-   private void send_forward(View view) {
+   private void send_forward() {
         Intent i = new Intent(this, CalendarActivity.class);
         i.putExtra("court_type", (String) spinnerCourtTypes.getSelectedItem());
         startActivity(i);

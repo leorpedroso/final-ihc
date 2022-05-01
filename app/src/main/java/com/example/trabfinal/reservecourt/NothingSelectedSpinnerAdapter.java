@@ -1,5 +1,5 @@
-/**
- * Copiado de https://stackoverflow.com/a/12221309
+/*
+  Copied from https://stackoverflow.com/a/12221309
  */
 
 package com.example.trabfinal.reservecourt;

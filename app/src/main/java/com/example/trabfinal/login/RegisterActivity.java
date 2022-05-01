@@ -1,4 +1,4 @@
-package com.example.trabfinal.reservecourt;
+package com.example.trabfinal.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,25 +12,16 @@ import com.example.trabfinal.R;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private Button buttonConfirm;
-    private TextView textLogin;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        buttonConfirm = (Button) findViewById(R.id.buttonConfirm);
-        buttonConfirm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) { send(view); }
-        });
+        Button buttonConfirm = (Button) findViewById(R.id.buttonConfirm);
+        buttonConfirm.setOnClickListener(this::send);
 
-        textLogin = (TextView) findViewById(R.id.already_created);
-        textLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) { send(view); }
-        });
+        TextView textLogin = (TextView) findViewById(R.id.already_created);
+        textLogin.setOnClickListener(this::send);
     }
 
     private void send(View view) {

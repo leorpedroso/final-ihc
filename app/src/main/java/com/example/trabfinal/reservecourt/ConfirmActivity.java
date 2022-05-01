@@ -19,27 +19,18 @@ public class ConfirmActivity extends AppCompatActivity {
     private String selectedCourtNumber;
     private int selectedTimeId;
 
-    private TextView courtType;
-    private TextView date;
-    private TextView time;
-    private TextView courtNumber;
-    private ImageView backwards;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confirm);
 
-        backwards = (ImageView) findViewById(R.id.backwards);
-        backwards.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) { send_back(view); }
-        });
+        ImageView backwards = (ImageView) findViewById(R.id.backwards);
+        backwards.setOnClickListener(this::send_back);
 
-        courtType = findViewById(R.id.courtType);
-        date = findViewById(R.id.date);
-        time = findViewById(R.id.time);
-        courtNumber = findViewById(R.id.courtNumber);
+        TextView courtType = findViewById(R.id.courtType);
+        TextView date = findViewById(R.id.date);
+        TextView time = findViewById(R.id.time);
+        TextView courtNumber = findViewById(R.id.courtNumber);
 
         selectedCourtType = getIntent().getStringExtra("court_type");
         selectedDate = getIntent().getLongExtra("date", 0);

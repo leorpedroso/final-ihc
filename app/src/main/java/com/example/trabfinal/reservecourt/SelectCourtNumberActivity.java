@@ -15,11 +15,8 @@ import com.example.trabfinal.R;
 
 public class SelectCourtNumberActivity extends AppCompatActivity {
     private Spinner spinnerCourtNumbers;
-    private ImageView backwards;
-    private ImageView forwards;
 
     private String selectedCourtType;
-    private String selectedCourtNumber;
     private String selectedTime;
     private int selectedTimeId;
     private long selectedDate;
@@ -29,19 +26,13 @@ public class SelectCourtNumberActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_court_number);
 
-        backwards = (ImageView) findViewById(R.id.backwards);
-        backwards.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) { send_back(view); }
-        });
+        ImageView backwards = (ImageView) findViewById(R.id.backwards);
+        backwards.setOnClickListener(this::send_back);
 
-        forwards = (ImageView) findViewById(R.id.forwards);
-        forwards.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (isSendableSpinner(spinnerCourtNumbers))
-                    send_forward(view);
-            }
+        ImageView forwards = (ImageView) findViewById(R.id.forwards);
+        forwards.setOnClickListener(view -> {
+            if (isSendableSpinner(spinnerCourtNumbers))
+                send_forward();
         });
 
         spinnerCourtNumbers = (Spinner) findViewById(R.id.spinnerCourtNumbers);
@@ -57,7 +48,7 @@ public class SelectCourtNumberActivity extends AppCompatActivity {
                         // R.layout.contact_spinner_nothing_selected_dropdown, // Optional
                         this));
 
-        selectedCourtNumber = getIntent().getStringExtra("court_number");
+        String selectedCourtNumber = getIntent().getStringExtra("court_number");
         selectedCourtType = getIntent().getStringExtra("court_type");
         selectedDate = getIntent().getLongExtra("date", 0);
         selectedTime = getIntent().getStringExtra("time");
@@ -77,7 +68,7 @@ public class SelectCourtNumberActivity extends AppCompatActivity {
         startActivity(i);
     }
 
-    private void send_forward(View view) {
+    private void send_forward() {
         Intent i = new Intent(this, ConfirmActivity.class);
         i.putExtra("date", selectedDate);
         i.putExtra("court_type", selectedCourtType);

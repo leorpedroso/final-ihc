@@ -13,15 +13,11 @@ public final class Utils {
     }
 
     public static boolean isSendableSpinner(Spinner spinner) {
-        if (spinner.getSelectedItemPosition() == 0)
-            return false;
-        return true;
+        return spinner.getSelectedItemPosition() != 0;
     }
 
     public static boolean isSendableTime(int id) {
-        if (id == 0)
-            return false;
-        return true;
+        return id != 0;
     }
 
 }

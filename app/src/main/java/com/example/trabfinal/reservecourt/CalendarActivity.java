@@ -16,13 +16,10 @@ import java.util.Calendar;
 public class CalendarActivity extends AppCompatActivity {
 
     private CalendarView calendar;
-    private ImageView backwards;
-    private ImageView forwards;
-    private TextView selectedCourt;
 
-    private long currentDate, selectedDate;
+    private long selectedDate;
     private String courtType;
-    private static final long MAXDAYS_MS = 1296000000; // 15 days in milliseconds
+    private static final long MAX_DAYS_MS = 1296000000; // 15 days in milliseconds
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,37 +27,28 @@ public class CalendarActivity extends AppCompatActivity {
         setContentView(R.layout.activity_calendar);
 
         calendar = (CalendarView) findViewById(R.id.calendarView);
-        currentDate = System.currentTimeMillis();
+        long currentDate = System.currentTimeMillis();
         calendar.setMinDate(currentDate);
-        calendar.setMaxDate(currentDate + MAXDAYS_MS);
+        calendar.setMaxDate(currentDate + MAX_DAYS_MS);
 
         selectedDate = getIntent().getLongExtra("date", currentDate);
         courtType = getIntent().getStringExtra("court_type");
 
-        calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-            @Override
-            public void onSelectedDayChange(CalendarView view, int year, int month, int day) {
-                Calendar c = Calendar.getInstance();
-                c.set(year, month, day);
-                selectedDate = c.getTimeInMillis();
-            }
+        calendar.setOnDateChangeListener((view, year, month, day) -> {
+            Calendar c = Calendar.getInstance();
+            c.set(year, month, day);
+            selectedDate = c.getTimeInMillis();
         });
 
         setCalendarInit(currentDate, selectedDate);
 
-        backwards = (ImageView) findViewById(R.id.backwards);
-        backwards.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) { send_back(view); }
-        });
+        ImageView backwards = (ImageView) findViewById(R.id.backwards);
+        backwards.setOnClickListener(this::send_back);
 
-        forwards = (ImageView) findViewById(R.id.forwards);
-        forwards.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) { send_forward(view); }
-        });
+        ImageView forwards = (ImageView) findViewById(R.id.forwards);
+        forwards.setOnClickListener(this::send_forward);
 
-        selectedCourt = findViewById(R.id.textView5);
+        TextView selectedCourt = findViewById(R.id.textView5);
         selectedCourt.setText(courtType);
     }
 
