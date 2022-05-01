@@ -2,15 +2,18 @@ package com.example.trabfinal.reservecourt;
 
 import static com.example.trabfinal.Utils.isSendableSpinner;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.trabfinal.MainActivity;
 import com.example.trabfinal.R;
 
 public class SelectCourtNumberActivity extends AppCompatActivity {
@@ -21,22 +24,37 @@ public class SelectCourtNumberActivity extends AppCompatActivity {
     private int selectedTimeId;
     private long selectedDate;
 
+    private AlertDialog dialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_court_number);
 
-        ImageView backwards = (ImageView) findViewById(R.id.backwards);
+        ImageView backwards = findViewById(R.id.backwards);
         backwards.setOnClickListener(this::send_back);
 
-        ImageView forwards = (ImageView) findViewById(R.id.forwards);
+        ImageView forwards = findViewById(R.id.forwards);
         forwards.setOnClickListener(view -> {
             if (isSendableSpinner(spinnerCourtNumbers))
                 send_forward();
         });
 
-        spinnerCourtNumbers = (Spinner) findViewById(R.id.spinnerCourtNumbers);
-//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.court_types, android.R.layout.simple_spinner_dropdown_item);
+        ImageView mapImage = new ImageView(this);
+        mapImage.setImageResource(R.drawable.quadras);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setNegativeButton("Fechar", (dialog, id) -> {
+            dialog.dismiss();
+        });
+
+        dialog = builder.create();
+        dialog.setView(mapImage);
+
+        Button buttonMap = findViewById(R.id.buttonMap);
+        buttonMap.setOnClickListener(view -> dialog.show());
+
+        spinnerCourtNumbers = findViewById(R.id.spinnerCourtNumbers);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.court_numbers, R.layout.spinner_text);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -45,7 +63,6 @@ public class SelectCourtNumberActivity extends AppCompatActivity {
                 new NothingSelectedSpinnerAdapter(
                         adapter,
                         R.layout.contact_spinner_row_nothing_selected_2,
-                        // R.layout.contact_spinner_nothing_selected_dropdown, // Optional
                         this));
 
         String selectedCourtNumber = getIntent().getStringExtra("court_number");

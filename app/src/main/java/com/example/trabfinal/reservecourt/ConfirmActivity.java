@@ -1,13 +1,16 @@
 package com.example.trabfinal.reservecourt;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.trabfinal.MainActivity;
 import com.example.trabfinal.R;
 import com.example.trabfinal.Utils;
 
@@ -24,8 +27,11 @@ public class ConfirmActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confirm);
 
-        ImageView backwards = (ImageView) findViewById(R.id.backwards);
+        ImageView backwards = findViewById(R.id.backwards);
         backwards.setOnClickListener(this::send_back);
+
+        Button button = findViewById(R.id.button);
+        button.setOnClickListener(this::confirmReservation);
 
         TextView courtType = findViewById(R.id.courtType);
         TextView date = findViewById(R.id.date);
@@ -42,6 +48,17 @@ public class ConfirmActivity extends AppCompatActivity {
         date.setText(Utils.formatDate(selectedDate));
         time.setText(selectedTime);
         courtNumber.setText(selectedCourtNumber);
+    }
+
+    private void confirmReservation(View view) {
+        // check if reservation is ok
+        // check if user has available reservations
+        Toast.makeText(getApplicationContext(), "Agendamento confirmado!", Toast.LENGTH_SHORT).show();
+
+        // decrease user available reservations
+
+        Intent i = new Intent(this, MainActivity.class);
+        startActivity(i);
     }
 
     private void send_back(View view) {

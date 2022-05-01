@@ -26,6 +26,8 @@
         android:width="296dp"
         android:height="61dp"
         android:text="@string/confirmar"
+        android:textAppearance="@style/button_text"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
