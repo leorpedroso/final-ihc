@@ -2,7 +2,7 @@
  * Copiado de https://stackoverflow.com/a/12221309
  */
 
-package com.example.trabfinal;
+package com.example.trabfinal.reservecourt;
 
 import android.content.Context;
 import android.database.DataSetObserver;

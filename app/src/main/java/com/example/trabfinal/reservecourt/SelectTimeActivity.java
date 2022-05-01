@@ -1,4 +1,4 @@
-package com.example.trabfinal;
+package com.example.trabfinal.reservecourt;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.trabfinal.R;
+import com.example.trabfinal.Utils;
 
 public class SelectTimeActivity extends AppCompatActivity{
 
@@ -63,7 +66,10 @@ public class SelectTimeActivity extends AppCompatActivity{
         forwards = (ImageView) findViewById(R.id.forwards);
         forwards.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) { send_forward(view); }
+            public void onClick(View view) {
+                if (Utils.isSendableTime(colored_button))
+                    send_forward(view);
+            }
         });
 
         // Get Intents

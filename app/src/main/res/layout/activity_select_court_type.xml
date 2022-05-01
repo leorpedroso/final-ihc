@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:foregroundTint="#FFFFFF"
-    tools:context=".SelectCourtTypeActivity">
+    tools:context=".reservecourt.SelectCourtTypeActivity">
 
     <ImageView
         android:id="@+id/forwards"

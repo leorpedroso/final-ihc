@@ -1,4 +1,4 @@
-package com.example.trabfinal;
+package com.example.trabfinal.reservecourt;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.CalendarView;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.trabfinal.R;
 
 import java.util.Calendar;
 

@@ -10,6 +10,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.trabfinal.R;
+import com.example.trabfinal.reservecourt.RegisterActivity;
+import com.example.trabfinal.reservecourt.SelectCourtTypeActivity;
+
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {

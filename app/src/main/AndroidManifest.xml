@@ -10,29 +10,29 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TrabFinal">
         <activity
-            android:name=".LoginActivity"
+            android:name=".reservecourt.LoginActivity"
             android:exported="false" />
         <activity
             android:name=".ui.login.LoginActivity"
             android:exported="false"
             android:label="@string/title_activity_login" />
         <activity
-            android:name=".RegisterActivity"
+            android:name=".reservecourt.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".SelectCourtNumberActivity"
+            android:name=".reservecourt.SelectCourtNumberActivity"
             android:exported="false" />
         <activity
-            android:name=".ConfirmActivity"
+            android:name=".reservecourt.ConfirmActivity"
             android:exported="false" />
         <activity
-            android:name=".SelectTimeActivity"
+            android:name=".reservecourt.SelectTimeActivity"
             android:exported="false" />
         <activity
-            android:name=".CalendarActivity"
+            android:name=".reservecourt.CalendarActivity"
             android:exported="false" />
         <activity
-            android:name=".SelectCourtTypeActivity"
+            android:name=".reservecourt.SelectCourtTypeActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

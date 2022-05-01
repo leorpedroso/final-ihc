@@ -1,4 +1,6 @@
-package com.example.trabfinal;
+package com.example.trabfinal.reservecourt;
+
+import static com.example.trabfinal.Utils.isSendableSpinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +10,8 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
+
+import com.example.trabfinal.R;
 
 public class SelectCourtNumberActivity extends AppCompatActivity {
     private Spinner spinnerCourtNumbers;
@@ -34,7 +38,10 @@ public class SelectCourtNumberActivity extends AppCompatActivity {
         forwards = (ImageView) findViewById(R.id.forwards);
         forwards.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) { send_forward(view); }
+            public void onClick(View view) {
+                if (isSendableSpinner(spinnerCourtNumbers))
+                    send_forward(view);
+            }
         });
 
         spinnerCourtNumbers = (Spinner) findViewById(R.id.spinnerCourtNumbers);

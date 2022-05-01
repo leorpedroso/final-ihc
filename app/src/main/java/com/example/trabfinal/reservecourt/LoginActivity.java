@@ -1,4 +1,4 @@
-package com.example.trabfinal;
+package com.example.trabfinal.reservecourt;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,7 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
+import com.example.trabfinal.MainActivity;
+import com.example.trabfinal.R;
 
 public class LoginActivity extends AppCompatActivity {
 

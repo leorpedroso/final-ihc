@@ -1,4 +1,4 @@
-package com.example.trabfinal;
+package com.example.trabfinal.reservecourt;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.trabfinal.R;
+import com.example.trabfinal.Utils;
 
 public class ConfirmActivity extends AppCompatActivity {
 
