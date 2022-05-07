@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.trabfinal.R;
+import com.example.trabfinal.Utils;
 
 import java.util.Calendar;
 
@@ -50,6 +51,9 @@ public class CalendarActivity extends AppCompatActivity {
 
         TextView selectedCourt = findViewById(R.id.textView5);
         selectedCourt.setText(courtType);
+
+        TextView dataInfo = findViewById(R.id.textViewDataInfo);
+        dataInfo.setText("Selecione uma data entre " + Utils.formatDateNoYear(currentDate) + " e " + Utils.formatDateNoYear(currentDate + MAX_DAYS_MS));
     }
 
     private void send_back(View view) {

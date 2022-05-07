@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.trabfinal.R;
 import com.example.trabfinal.Utils;
+import com.example.trabfinal.backend.Data;
 
 public class SelectTimeActivity extends AppCompatActivity{
 
@@ -24,6 +25,11 @@ public class SelectTimeActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_time);
+
+        // Get Intents
+        selectedDate      = getIntent().getLongExtra("date",0);
+        selectedCourtType = getIntent().getStringExtra("court_type");
+        colored_button    = getIntent().getIntExtra("time_id",0);
 
         buttons[0] = (Button) findViewById(R.id.button8h);
         buttons[1] = (Button) findViewById(R.id.button9h);
@@ -40,14 +46,19 @@ public class SelectTimeActivity extends AppCompatActivity{
         buttons[12] = (Button) findViewById(R.id.button20h);
 
         for (Button button: buttons) {
-            button.setOnClickListener(view -> {
-                //TODO: se esta descolorido, nao seta o onclick
-                if (colored_button != 0)
-                    setButtonDefaultColors(findViewById(colored_button));
+            String[] s = Utils.filterUnavailableCourts(selectedCourtType, selectedCourtType + Utils.formatDate(selectedDate) + button.getText());
+            if (s != null && s.length > 0) {
+                button.setOnClickListener(view -> {
+                    if (colored_button != 0)
+                        setButtonDefaultColors(findViewById(colored_button));
 
-                setButtonClickedColors(button);
-                colored_button = button.getId();
-            });
+                    setButtonClickedColors(button);
+                    colored_button = button.getId();
+                });
+            }
+            else {
+                setButtonBlockedColors(button);
+            }
         }
 
         ImageView backwards = (ImageView) findViewById(R.id.backwards);
@@ -58,11 +69,6 @@ public class SelectTimeActivity extends AppCompatActivity{
             if (Utils.isSendableTime(colored_button))
                 send_forward();
         });
-
-        // Get Intents
-        selectedDate = getIntent().getLongExtra("date",0);
-        selectedCourtType = getIntent().getStringExtra("court_type");
-        colored_button = getIntent().getIntExtra("time_id",0);
 
         if (colored_button != 0)
             setButtonClickedColors(findViewById(colored_button));
@@ -97,4 +103,10 @@ public class SelectTimeActivity extends AppCompatActivity{
         button.setBackgroundColor(getResources().getColor(R.color.teal_200));
         button.setTextColor(getResources().getColor(R.color.white));
     }
+
+    private void setButtonBlockedColors(Button button) {
+        button.setBackgroundColor(getResources().getColor(R.color.light_gray));
+        button.setTextColor(getResources().getColor(R.color.gray));
+    }
+
 }

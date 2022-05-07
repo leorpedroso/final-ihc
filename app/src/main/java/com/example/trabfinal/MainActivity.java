@@ -14,6 +14,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
+import com.example.trabfinal.backend.Data;
 import com.example.trabfinal.login.RegisterActivity;
 import com.example.trabfinal.reservecourt.SelectCourtTypeActivity;
 import com.google.zxing.integration.android.IntentIntegrator;
@@ -52,6 +53,9 @@ public class MainActivity extends AppCompatActivity {
         Button buttonMap = findViewById(R.id.buttonMapa);
         buttonMap.setOnClickListener(this::show_dialog);
 
+        Button buttonReservations = findViewById(R.id.buttonHistorico);
+        buttonReservations.setOnClickListener(this::send_reservations);
+
         Button buttonCamera = findViewById(R.id.buttonCheckin);
         buttonCamera.setOnClickListener(view -> {
             IntentIntegrator intentIntegrator = new IntentIntegrator(MainActivity.this);
@@ -61,6 +65,14 @@ public class MainActivity extends AppCompatActivity {
 
         TextView signout = findViewById(R.id.textDeslogar);
         signout.setOnClickListener(this::send_signout);
+
+        TextView reservations = findViewById(R.id.textNumAgendamentos);
+        String append;
+        if (Data.getAvailableReservations() != 1)
+            append = " agendamentos disponíveis";
+        else
+            append = " agendamento disponível";
+        reservations.setText(Data.getAvailableReservations() + append);
     }
 
     @Override
@@ -80,6 +92,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void send_signout(View view) {
         Intent i = new Intent(this, RegisterActivity.class);
+        startActivity(i);
+    }
+
+    private void send_reservations(View view) {
+        Intent i = new Intent(this, ReservationsActivity.class);
         startActivity(i);
     }
 

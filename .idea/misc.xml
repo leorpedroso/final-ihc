@@ -5,6 +5,7 @@
       <map>
         <entry key="..\:/Users/leorp/AndroidStudioProjects/TrabFinal/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.347" />
         <entry key="..\:/Users/leorp/AndroidStudioProjects/TrabFinal/app/src/main/res/drawable/ic_launcher_background.xml" value="0.347" />
+        <entry key="..\:/Users/leorp/AndroidStudioProjects/TrabFinal/app/src/main/res/drawable/rectangle.xml" value="0.358" />
         <entry key="..\:/Users/leorp/AndroidStudioProjects/TrabFinal/app/src/main/res/layout/activity_calendar.xml" value="0.33125" />
         <entry key="..\:/Users/leorp/AndroidStudioProjects/TrabFinal/app/src/main/res/layout/activity_calendar2.xml" value="0.348731884057971" />
         <entry key="..\:/Users/leorp/AndroidStudioProjects/TrabFinal/app/src/main/res/layout/activity_confirm.xml" value="0.36666666666666664" />
@@ -12,12 +13,15 @@
         <entry key="..\:/Users/leorp/AndroidStudioProjects/TrabFinal/app/src/main/res/layout/activity_login2.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/leorp/AndroidStudioProjects/TrabFinal/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/leorp/AndroidStudioProjects/TrabFinal/app/src/main/res/layout/activity_register.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/leorp/AndroidStudioProjects/TrabFinal/app/src/main/res/layout/activity_reservations.xml" value="0.28520499108734404" />
         <entry key="..\:/Users/leorp/AndroidStudioProjects/TrabFinal/app/src/main/res/layout/activity_select_court_number.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/leorp/AndroidStudioProjects/TrabFinal/app/src/main/res/layout/activity_select_court_type.xml" value="0.33" />
         <entry key="..\:/Users/leorp/AndroidStudioProjects/TrabFinal/app/src/main/res/layout/activity_select_time.xml" value="0.348731884057971" />
+        <entry key="..\:/Users/leorp/AndroidStudioProjects/TrabFinal/app/src/main/res/layout/activity_test.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/leorp/AndroidStudioProjects/TrabFinal/app/src/main/res/layout/contact_spinner_row_nothing_selected.xml" value="0.348731884057971" />
         <entry key="..\:/Users/leorp/AndroidStudioProjects/TrabFinal/app/src/main/res/layout/contact_spinner_row_nothing_selected_2.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/leorp/AndroidStudioProjects/TrabFinal/app/src/main/res/layout/spinner_text.xml" value="0.348731884057971" />
+        <entry key="..\:/Users/leorp/AndroidStudioProjects/TrabFinal/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.358" />
         <entry key="..\:/Users/leorp/AndroidStudioProjects/TrabFinal/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.3675" />
         <entry key="..\:/Users/leorp/AppData/Local/Android/Sdk/platforms/android-32/data/res/layout/simple_spinner_dropdown_item.xml" value="0.36666666666666664" />
       </map>

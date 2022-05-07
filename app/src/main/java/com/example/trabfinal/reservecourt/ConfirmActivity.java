@@ -13,6 +13,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.trabfinal.MainActivity;
 import com.example.trabfinal.R;
 import com.example.trabfinal.Utils;
+import com.example.trabfinal.backend.Data;
+import com.example.trabfinal.backend.Reservation;
 
 public class ConfirmActivity extends AppCompatActivity {
 
@@ -53,12 +55,28 @@ public class ConfirmActivity extends AppCompatActivity {
     private void confirmReservation(View view) {
         // check if reservation is ok
         // check if user has available reservations
-        Toast.makeText(getApplicationContext(), "Agendamento confirmado!", Toast.LENGTH_SHORT).show();
 
-        // decrease user available reservations
+        if (Data.hasAvailableReservations()) {
+            String info = selectedCourtType + Utils.formatDate(selectedDate) + selectedTime + selectedCourtNumber;
+            if (Data.getReservationsInfo().contains(info)) {
+                Toast.makeText(getApplicationContext(), "Quadra indisponível!", Toast.LENGTH_SHORT).show();
+            }
+            else {
+                Reservation r = new Reservation(selectedCourtNumber, selectedCourtType, selectedTime, selectedDate);
+                Data.addReservation(r);
 
-        Intent i = new Intent(this, MainActivity.class);
-        startActivity(i);
+                Toast.makeText(getApplicationContext(), "Agendamento confirmado!", Toast.LENGTH_SHORT).show();
+
+                Intent i = new Intent(this, MainActivity.class);
+                startActivity(i);
+            }
+        }
+        else {
+            Toast.makeText(getApplicationContext(), "Você não possui agendamentos disponíveis!", Toast.LENGTH_SHORT).show();
+
+            Intent i = new Intent(this, MainActivity.class);
+            startActivity(i);
+        }
     }
 
     private void send_back(View view) {

@@ -9,12 +9,14 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.trabfinal.MainActivity;
 import com.example.trabfinal.R;
+import com.example.trabfinal.Utils;
+import com.example.trabfinal.backend.Data;
 
 public class SelectCourtNumberActivity extends AppCompatActivity {
     private Spinner spinnerCourtNumbers;
@@ -30,6 +32,12 @@ public class SelectCourtNumberActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_court_number);
+
+        String selectedCourtNumber = getIntent().getStringExtra("court_number");
+        selectedCourtType = getIntent().getStringExtra("court_type");
+        selectedDate = getIntent().getLongExtra("date", 0);
+        selectedTime = getIntent().getStringExtra("time");
+        selectedTimeId = getIntent().getIntExtra("time_id", 0);
 
         ImageView backwards = findViewById(R.id.backwards);
         backwards.setOnClickListener(this::send_back);
@@ -55,8 +63,12 @@ public class SelectCourtNumberActivity extends AppCompatActivity {
         buttonMap.setOnClickListener(view -> dialog.show());
 
         spinnerCourtNumbers = findViewById(R.id.spinnerCourtNumbers);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.court_numbers, R.layout.spinner_text);
+//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+//                R.array.court_numbers, R.layout.spinner_text);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+                R.layout.spinner_text,
+                Utils.filterUnavailableCourts(selectedCourtType, selectedCourtType + Utils.formatDate(selectedDate) + selectedTime));
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerCourtNumbers.setPrompt("@string/spinner_court_numbers");
         spinnerCourtNumbers.setAdapter(
@@ -64,12 +76,6 @@ public class SelectCourtNumberActivity extends AppCompatActivity {
                         adapter,
                         R.layout.contact_spinner_row_nothing_selected_2,
                         this));
-
-        String selectedCourtNumber = getIntent().getStringExtra("court_number");
-        selectedCourtType = getIntent().getStringExtra("court_type");
-        selectedDate = getIntent().getLongExtra("date", 0);
-        selectedTime = getIntent().getStringExtra("time");
-        selectedTimeId = getIntent().getIntExtra("time_id", 0);
 
         if (selectedCourtNumber != null && !selectedCourtNumber.isEmpty()) {
             spinnerCourtNumbers.setSelection(adapter.getPosition(selectedCourtNumber)+1);
@@ -86,13 +92,19 @@ public class SelectCourtNumberActivity extends AppCompatActivity {
     }
 
     private void send_forward() {
-        Intent i = new Intent(this, ConfirmActivity.class);
-        i.putExtra("date", selectedDate);
-        i.putExtra("court_type", selectedCourtType);
-        i.putExtra("time", selectedTime);
-        i.putExtra("time_id", selectedTimeId);
-        i.putExtra("court_number", (String) spinnerCourtNumbers.getSelectedItem());
-        startActivity(i);
-    }
 
+        String info = selectedCourtType + Utils.formatDate(selectedDate) + selectedTime + (String) spinnerCourtNumbers.getSelectedItem();
+        if (Data.getReservationsInfo().contains(info)) {
+            Toast.makeText(getApplicationContext(), "Quadra indisponível!", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            Intent i = new Intent(this, ConfirmActivity.class);
+            i.putExtra("date", selectedDate);
+            i.putExtra("court_type", selectedCourtType);
+            i.putExtra("time", selectedTime);
+            i.putExtra("time_id", selectedTimeId);
+            i.putExtra("court_number", (String) spinnerCourtNumbers.getSelectedItem());
+            startActivity(i);
+        }
+    }
 }
